@@ -19,25 +19,26 @@ from matplotlib import pyplot
 import pandas as pd    
 import numpy as np
 
-def generate_cadres(samples, features, informative, cadres, seed):
-    """
-    samples = sample size
-    features = cadre features 
-    cadres = number of cadres
-    informative = random state
-    seed = random state
-    """
-    samples_per_cadre=int(samples/cadres)
-    X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=cadres,  random_state=seed)
-    c_columns = ['cad'+str(x) for x in range (features)] #['cad'+str(x) for x in range (cf)]
-    df = pd.DataFrame(X, columns = c_columns)
-    df["cadre"] = y
-    df=df.sort_values(by=['cadre'], )
-    df=df.reset_index(drop=True)
-    df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
-    return df
+class DGenerator():
+    def generate_cadres(samples, features, informative, cadres, seed):
+        """
+        samples = sample size
+        features = cadre features 
+        cadres = number of cadres
+        informative = random state
+        seed = random state
+        """
+        samples_per_cadre=int(samples/cadres)
+        X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=cadres,  random_state=seed)
+        c_columns = ['cad'+str(x) for x in range (features)] #['cad'+str(x) for x in range (cf)]
+        df = pd.DataFrame(X, columns = c_columns)
+        df["cadre"] = y
+        df=df.sort_values(by=['cadre'], )
+        df=df.reset_index(drop=True)
+        df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
+        return df
 
-def generate_variables(df, samples, features, classes, informative, seed):
+    def generate_variables(df, samples, features, classes, informative, seed):
         """        
         df = dataframe from generate_cadre function
         samples = sample size
