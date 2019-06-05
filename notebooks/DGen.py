@@ -38,13 +38,14 @@ def generate_cadres(samples, features, informative, cadres, seed):
     return df
 
 def generate_variables(df, samples, features, classes, informative, seed):
-        # df = dataframe
-        # features = number of features
-        # n = sample size
-        # c = cadre you wish to generate variables for
-        # r = random state
-        # y = target / dependent variable / number of responses for categorical variable
-        # X = independent variables
+        """        
+        df = dataframe from generate_cadre function
+        samples = sample size
+        features = depedent variables
+        classes = target / dependent variable / number of responses for categorical variable
+        informative = number of informative features in features
+        seed = random state
+        """
         df2=pd.DataFrame()
         
         for cadre in range(cadres):
@@ -56,6 +57,5 @@ def generate_variables(df, samples, features, classes, informative, seed):
             df3["cadre"]=cadre
             df3["index_c"]=df3.index
             df2=df2.append(df3)
-            #df2.merge(df3,left_on='cadre',right_on='cadre')
-        #df2=pd.concat([df2.loc[df2.cadre==0,], df3], axis=1, join='inner')
+            
         return df2
