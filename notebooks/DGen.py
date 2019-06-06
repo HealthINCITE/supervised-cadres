@@ -49,8 +49,9 @@ class DGenerator:
         seed = random state
         """
         df2=pd.DataFrame()
+        cadres = np.array(df['cadre'])
         
-        for cadre in range(len(df['cadre'])):
+        for cadre in range(cadres):
             seed_c=cadre*seed
             X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c)
             columns= [ 'dv'+str(x) for x in range(features)]
