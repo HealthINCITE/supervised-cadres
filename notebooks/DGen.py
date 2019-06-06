@@ -51,7 +51,7 @@ class DGenerator:
         df2=pd.DataFrame()
         cadres = pd.DataFrame(df['cadre'])
         
-        for cadre in range(cadres):
+        for cadre in range(df.loc[cadres['cadre']==cadre]):
             seed_c=cadre*seed
             X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c)
             columns= [ 'dv'+str(x) for x in range(features)]
