@@ -39,7 +39,7 @@ class DGenerator:
         df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
         return df
 
-    def generate_variables(df, samples, features, classes, informative, seed, c):
+    def generate_variables(df, samples, features, classes, informative, seed):
         """        
         df = dataframe from generate_cadre function
         samples = sample size
@@ -49,10 +49,11 @@ class DGenerator:
         seed = random state
         """
         df2=pd.DataFrame()
-        
+        c = len(df['cadre'].unique())
+       
         for cadre in range(len(df['cadre'])):
             seed_c=cadre*seed
-            X, y= make_classification(n_samples=samples/c, n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c)
+            X, y= make_classification(n_samples=int(samples/c), n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c)
             columns= [ 'dv'+str(x) for x in range(features)]
             df3 = pd.DataFrame(X, columns = columns)
             df3["target"]=y
