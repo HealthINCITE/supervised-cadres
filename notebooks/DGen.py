@@ -36,7 +36,7 @@ class DGenerator:
         df["cadre"] = y
         df=df.sort_values(by=['cadre'],)
         df=df.reset_index(drop=True)
-        df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
+        #df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
         return df
 
     def generate_variables(df, samples, features, classes, informative, seed):
@@ -49,7 +49,7 @@ class DGenerator:
         seed = random state
         """
         df2=pd.DataFrame()
-        cadres =[df['cadre']]
+        cadres = pd.DataFrame(df['cadre'])
         
         for cadre in range(cadres):
             seed_c=cadre*seed
