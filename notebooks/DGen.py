@@ -49,7 +49,7 @@ class DGenerator:
         seed = random state
         """
         df2=pd.DataFrame()
-        cadres = np.array(df['cadre'])
+        cadres =[df['cadre']]
         
         for cadre in range(cadres):
             seed_c=cadre*seed
