@@ -5,6 +5,7 @@ Created on Wed June 05 17:07 2019
 
 @authors: jkuruzovich, karhin
 """
+import sys 
 
 def warn(*args, **kwargs):
     pass
@@ -19,7 +20,7 @@ from matplotlib import pyplot
 import pandas as pd    
 import numpy as np
 
-class DGenerator():
+class DGenerator:
     def generate_cadres(samples, features, informative, cadres, seed):
         """
         samples = sample size
@@ -33,7 +34,7 @@ class DGenerator():
         c_columns = ['cad'+str(x) for x in range (features)] #['cad'+str(x) for x in range (cf)]
         df = pd.DataFrame(X, columns = c_columns)
         df["cadre"] = y
-        df=df.sort_values(by=['cadre'], )
+        df=df.sort_values(by=['cadre'],)
         df=df.reset_index(drop=True)
         df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
         return df
@@ -48,7 +49,7 @@ class DGenerator():
         seed = random state
         """
         df2=pd.DataFrame()
-        
+
         for cadre in range(cadres):
             seed_c=cadre*seed
             X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c)
@@ -58,5 +59,5 @@ class DGenerator():
             df3["cadre"]=cadre
             df3["index_c"]=df3.index
             df2=df2.append(df3)
-            
+
         return df2
