@@ -30,7 +30,7 @@ class DGenerator:
         seed = random state
         """
         samples_per_cadre=int(samples/cadres)
-        X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=cadres,  random_state=seed)
+        X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=cadres,  random_state=seed, n_redundant =c_red, class_sep = c_classep, flip_y = c_flip)
         c_columns = ['cad'+str(x) for x in range (features)] #['cad'+str(x) for x in range (cf)]
         df = pd.DataFrame(X, columns = c_columns)
         df["cadre"] = y
@@ -52,7 +52,7 @@ class DGenerator:
        
         for cadre in range(cadres):
             seed_c=cadre*seed
-            X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c)
+            X, y= make_classification(n_samples=samples, n_features=features, n_informative=informative,  n_classes=classes,  random_state=seed_c, n_redundant = c_red, class_sep = c_classep, flip_y = c_flip)
             columns= [ 'dv'+str(x) for x in range(features)]
             df3 = pd.DataFrame(X, columns = columns)
             df3["target"]=y
