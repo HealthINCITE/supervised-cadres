@@ -21,7 +21,7 @@ import pandas as pd
 import numpy as np
 
 class DGenerator:
-    def generate_cadres(samples, features, informative, cadres, seed, c_red, c_classep, c_flip):
+    def generate_cadres(samples, features, informative, cadres, seed, n_redundant, class_sep, flip_y):
         """
         samples = sample size
         features = cadre features 
@@ -39,7 +39,7 @@ class DGenerator:
         df['index_c']= [x for y in range(cadres) for x in range(samples_per_cadre)]
         return df
 
-    def generate_variables(cadres, samples, features, classes, informative, seed, t_red, t_classep, t_flip):
+    def generate_variables(cadres, samples, features, classes, informative, seed, n_redundant, class_sep, flip_y):
         """        
         df = dataframe from generate_cadre function
         samples = sample size
